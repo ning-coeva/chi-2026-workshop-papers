@@ -1,0 +1,39 @@
+se into the cognitive narrative.
+
+\textbf{Principle 4: Individualized baselines.} CPI should calibrate against the user's own patterns and user-defined goals, not population norms. For neurodivergent users or simply different cognitive styles, a high topic-switch frequency may be functional, not pathological. \textit{Rationale:} Normative baselines risk pathologizing cognitive diversity. \textit{Example:} Users define their own session types (deep work, creative exploration, administrative) with distinct expected rhythms, and the system evaluates relative to these personal definitions.
+
+\section{Anti-Patterns: What Should Not Be Built}
+
+Alongside design principles, we identify three anti-patterns that CPI systems should actively resist.
+
+\textbf{Anti-pattern 1: Epistemic displacement.} When a CPI system's interpretation consistently overrides the user's self-knowledge---``the data says you were stressed, even if you didn't feel stressed''---the user's capacity for cognitive self-awareness atrophies. CPI should amplify self-knowledge, not replace it. The system should say ``here's what I noticed'' and then ask ``what do you think?''---not the reverse.
+
+\textbf{Anti-pattern 2: Compliance infrastructure.} When CPI data flows to employers, insurers, or platforms as ``cognitive productivity scores,'' the system becomes a surveillance tool. People begin performing for their devices rather than thinking for themselves. CPI data should be user-controlled by default, with sharing as an explicit, revocable, purpose-bound decision.
+
+\textbf{Anti-pattern 3: Normative rhythm enforcement.} When CPI systems treat sustained high focus as the only ``good'' cognitive state and nudge users away from exploration, diffusion, and rest, they suppress the natural variability that supports creativity, recovery, and well-being. CPI fails when it turns cognition into a performance for metrics.
+
+\section{Discussion and Research Agenda}
+
+\textbf{Integration challenges.} Combining sensor-based and interaction-based CPI raises practical questions: how to align timestamps across modalities, how to present potentially conflicting signals (wearable says ``stressed,'' traces say ``productive disruption''), and how to maintain coherent narratives when data sources disagree. We suggest that disagreement between modalities should be surfaced to the user as a reflection prompt, not resolved algorithmically.
+
+\textbf{Neurodiversity and inclusion.} CPI systems must accommodate cognitive diversity as a design requirement, not an edge case. This means supporting user-defined baselines, multiple session types, and goals beyond productivity (well-being, creativity, recovery, social connection). It also means testing CPI designs with neurodivergent users from the outset, not as an afterthought.
+
+\textbf{Evaluation beyond accuracy.} If interaction traces are reflective artifacts rather than measurements, the evaluation criteria shift from classification accuracy to user-centered outcomes: Does the system increase self-reflection? Does it preserve or enhance user agency? Does it reduce self-blame after difficult sessions? Does it support better decision-making about work patterns? These questions require longitudinal, qualitative evaluation methods that foreground the user's own assessment of value. A key evaluative question is whether traces help users produce better self-explanations---not just better behaviors. This can be assessed through longitudinal diary studies, annotation quality over time, and users' perceived agency when disagreeing with the system's interpretations.
+
+\textbf{Toward a research agenda.} We propose three immediate research directions: (1) prototyping multimodal CPI interfaces that combine wearable data with interaction traces and evaluating whether the combination improves reflection quality; (2) studying how users annotate and contest CPI interpretations over time, and whether contestability genuinely preserves agency; and (3) developing design guidelines for CPI systems that serve diverse cognitive styles and resist institutional capture.
+
+\section*{References}
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.2em,itemsep=2pt,topsep=2pt]
+\item Ian Li, Anind Dey, and Jodi Forlizzi. 2010. A Stage-Based Model of Personal Informatics Systems. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems}. ACM, 557--566.
+\item Daniel A. Epstein, An Ping, James Fogarty, and Sean A. Munson. 2015. A Lived Informatics Model of Personal Informatics. In \textit{Proceedings of the 2015 ACM International Joint Conference on Pervasive and Ubiquitous Computing}. ACM, 731--742.
+\item Amon Rapp and Federica Cena. 2016. Personal Informatics for Everyday Life: How Users without Prior Self-Tracking Experience Engage with Personal Data. \textit{International Journal of Human-Computer Studies} 94 (2016), 1--17.
+\item Eun Kyoung Choe, Nicole B. Lee, Bongshin Lee, Wanda Pratt, and Julie A. Kientz. 2014. Understanding Quantified-Selfers' Practices in Collecting and Exploring Personal Data. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems}. ACM, 1143--1152.
+\item Zhuoyang Cai, Xun Qian, Xiaohan Fan, Shwetha Rajaram, and Karthik Ramani. 2024. Cognitive Personal Informatics: Monitoring Cognitive Well-Being through EEG Wearables. arXiv preprint arXiv:2410.06723.
+\item Saleema Amershi, Dan Weld, Mihaela Vorvoreanu, et al. 2019. Guidelines for Human-AI Interaction. In \textit{Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems}. ACM, 1--13.
+\item Matthew Kay, Tara Kola, Jessica R. Hullman, and Sean A. Munson. 2016. When (Ish) Is My Bus? User-Centered Visualizations of Uncertainty in Everyday, Mobile Predictive Systems. In \textit{Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems}. ACM, 5092--5103.
+\item Herbert H. Clark and Susan E. Brennan. 1991. Grounding in Communication. In \textit{Perspectives on Socially Shared Cognition}. APA, 127--149.
+\item Corina Sas and Alina Coman. 2017. Designing Personal Grief Rituals: An Analysis of Symbolic Objects and Actions. \textit{Death Studies} 40, 9 (2017), 558--569.
+\item Kars Alfrink, Ianus Keller, Neelke Doorn, and Gerd Kortuem. 2023. Contestable AI by Design: Towards a Framework. \textit{Minds and Machines} 33 (2023), 613--639.
+\end{enumerate}
+
+\end{document}

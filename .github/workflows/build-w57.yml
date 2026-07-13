@@ -1,0 +1,40 @@
+name: Build W57 PDF
+
+on:
+  push:
+    paths:
+      - '.build/w57.part*.tex'
+      - '.github/workflows/build-w57.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
+
+      - name: Assemble and compile paper
+        run: |
+          mkdir -p source papers
+          cat .build/w57.part00.tex .build/w57.part01.tex .build/w57.part02.tex > source/W57_From_Scores_to_Stories.tex
+          pdflatex -interaction=nonstopmode -halt-on-error -output-directory=papers source/W57_From_Scores_to_Stories.tex
+          pdflatex -interaction=nonstopmode -halt-on-error -output-directory=papers source/W57_From_Scores_to_Stories.tex
+          mv papers/W57_From_Scores_to_Stories.pdf papers/CHI2026_Future_Cognitive_Personal_Informatics_From_Scores_to_Stories.pdf
+          rm -f papers/W57_From_Scores_to_Stories.aux papers/W57_From_Scores_to_Stories.log papers/W57_From_Scores_to_Stories.out
+
+      - name: Commit generated PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source/W57_From_Scores_to_Stories.tex papers/CHI2026_Future_Cognitive_Personal_Informatics_From_Scores_to_Stories.pdf
+          git diff --cached --quiet || git commit -m "Build W57 paper PDF"
+          git push

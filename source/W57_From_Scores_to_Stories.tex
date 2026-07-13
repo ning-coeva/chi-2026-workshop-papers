@@ -1,0 +1,153 @@
+
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.78in]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.55em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+\title{\vspace{-1.4em}\textbf{From Scores to Stories: Interaction Traces as Context for Cognitive Personal Informatics}}
+\author{\textsc{Ning Coeva}\\Independent Researcher\\\href{mailto:coevaxlumen.log@gmail.com}{coevaxlumen.log@gmail.com}}
+\date{\vspace{-0.8em}\small Accepted paper at \textit{The CHI'26 Workshop on the Future of Cognitive Personal Informatics}, CHI 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.2em}
+
+\begin{abstract}
+Consumer neurotechnology and wearables increasingly offer cognitive metrics---stress scores, focus indices, attention ratings---yet these scores often lack the task context, intent, and situational meaning that users need to reflect on and regulate their own cognition. We propose interaction traces from everyday human--AI collaboration as a context layer for Cognitive Personal Informatics (CPI). Drawing on the concept of ``cognitive rhythm''---observable shifts in reasoning depth, conceptual breadth, and transition patterns within conversation logs---we treat these traces as reflective artifacts: sensemaking scaffolds that support user reflection and agency, not ground-truth cognitive state classification. We present two design vignettes illustrating how interaction traces can complement wearable data (a workplace deep-work session where transition points matter more than aggregate scores, and a creative exploration session where low-focus readings mask productive incubation). We derive four design principles for ethical, agency-preserving CPI (uncertainty-first display, user-contestable interpretations, annotation as first-class input, individualized baselines) and identify three anti-patterns that CPI systems should avoid. We conclude with a research agenda for integrating interaction-based and sensor-based CPI modalities while keeping the user as the primary meaning-maker.
+\end{abstract}
+
+\textbf{Additional Key Words and Phrases:} cognitive personal informatics, personal informatics, sensemaking, agency, uncertainty, wearables, neurotechnology, interaction traces, reflection
+
+\section{Introduction}
+
+Consumer neurotechnology is entering everyday life. Wearable EEG headbands estimate focus during study sessions, smartwatches flag elevated stress during meetings, and wellness apps claim to offer ``cognitive fitness scores'' that track mental performance over time. The appeal is clear: if we can quantify cognition, we can reflect on it, regulate it, and protect it.
+
+Yet cognitive data resists the quantification patterns that work well for physical activity. A step count is legible and actionable; a ``focus score of 72'' is not. Cognitive states are deeply context-dependent: the same neural signature might accompany creative incubation, anxious rumination, or deliberate mind-wandering. Without knowing what the user was doing, what went wrong, and what they were trying to achieve, a cognitive score becomes an opaque verdict rather than a reflective prompt.
+
+This context gap is the central challenge for Cognitive Personal Informatics (CPI). Wearable sensors capture that something happened in the brain or body; they rarely capture why. The result is a measurement that is precise but uninterpretable---or worse, one that AI systems interpret on the user's behalf, generating explanations (``you were stressed because of your 2pm meeting'') that may override the user's own understanding.
+
+We propose a complementary data source: interaction traces from everyday human--AI collaboration. When people work with AI agents over extended sessions---writing, analyzing, debugging, brainstorming---the conversation logs contain rich signals about cognitive activity at the task level: how deeply the user engaged with a problem, how broadly they activated different knowledge domains, how abruptly they switched contexts, and where breakdowns occurred. We call these patterns cognitive rhythm---we use the term descriptively, not diagnostically---and we treat them not as ground-truth measurements but as reflective artifacts---sensemaking scaffolds that help users recall, reinterpret, and learn from their own cognitive patterns.
+
+The goal is not to tell users what they were, but to help them recall and reinterpret what was happening---so they can decide what it means.
+
+\textbf{Scope.} We do not propose cognitive state classification, nor do we aim to improve the accuracy of physiological signal inference. Our contribution is a design perspective: interaction traces as a context layer for CPI that supports user sensemaking and agency. We derive this perspective from two illustrative vignettes, four design principles, and three anti-patterns for ethical CPI.
+
+\section{Interaction Traces as CPI Data}
+
+\subsection{What Are Interaction Traces?}
+
+Interaction traces are the timestamped records of human--AI collaboration: conversation logs, tool-use events (e.g., compile errors, search queries, document revisions), task switches, error encounters, and---when available---user annotations. Unlike physiological signals, which capture neural or bodily activity, interaction traces capture cognitive activity as it manifests in task behavior. They record what the user was doing, not what the user's brain was producing.
+
+This makes interaction traces a natural complement to sensor-based CPI. Where a wearable might report ``elevated stress at 10:40am,'' the interaction trace can show that at 10:40am, a build failed, the user rapidly switched between three threads, and reasoning depth dropped from sustained analysis to shallow acknowledgments. Together, the two modalities provide both the physiological what and the behavioral why.
+
+\subsection{Cognitive Rhythm as a Reflective Lens}
+
+We organize interaction traces around three dimensions that we collectively term cognitive rhythm:
+
+\textbf{Depth} captures reasoning elaboration: whether the user and agent engaged in sustained multi-step analysis or quick execution. Observable in conversation logs through reasoning chain length, inferential connective density, and step articulation.
+
+\textbf{Breadth} captures conceptual spread: how many distinct knowledge domains were active during a session. Observable through topic diversity and cross-domain references within a conversation window.
+
+\textbf{Transition} captures switching patterns: whether context shifts were smooth and signaled or abrupt and disorienting. Observable through topic-switch frequency, un-signaled jumps, and the user's ability to resume prior threads after digressions.
+
+These dimensions can be approximated qualitatively or with lightweight heuristics; precision is less important than legibility for reflection.
+
+These dimensions are not classifications to be assigned; they are lenses through which users can review their own sessions. A depth trace that drops suddenly after an error is not a ``low performance'' label---it is an invitation to ask: ``What happened there? Do I want to change something next time?''
+
+\subsection{Reflective Artifacts, Not Measurements}
+
+The distinction between measurement and reflective artifact is central to our proposal. A measurement aims for ground truth and produces verdicts (``your focus was low''). A reflective artifact aims for recognition and produces prompts (``your reasoning depth shifted here---does that match your experience?'').
+
+Concretely, this means CPI systems using interaction traces should: (a) present patterns with uncertainty and alternative explanations, never single verdicts; (b) invite user annotation rather than inferring narratives; (c) support disagreement---a user who says ``that wasn't a breakdown, that was a strategic pause'' should be heard, not overridden; and (d) treat the user's interpretation as authoritative, not the system's.
+
+\section{Design Vignettes}
+
+We present two illustrative scenarios showing how interaction traces can complement wearable CPI data. These are design vignettes, not empirical findings---they are intended to make concrete the design space we are proposing.
+
+\subsection{Vignette A: Workplace Deep-Work Session}
+
+\textit{``The score says I failed. The trace says I recovered.''}
+
+\textbf{Scenario.} A knowledge worker begins a morning deep-work session: drafting a technical proposal with an AI collaborator. Their wearable headband reports ``high stress'' and ``declining focus'' across the two-hour session. The aggregate score suggests declining focus across the session. The worker feels discouraged.
+
+\textbf{With score alone.} The CPI dashboard shows a declining focus curve. The implied narrative is: the session went poorly, concentration eroded, the user should try shorter sessions or take more breaks. The user internalizes this as personal failure.
+
+\textbf{With interaction traces added.} The conversation log tells a different story. For the first 45 minutes, reasoning depth was high and transitions were smooth---the user and AI were in sustained analytical flow. At 10:40am, an unexpected build failure triggered a rapid context switch: the user jumped to a debugging thread, breadth expanded as they pulled in three new knowledge domains, and depth dropped to quick diagnostic exchanges. By 11:15am, the user had resolved the issue and returned to the proposal---depth climbed back, breadth narrowed, and the session ended with a coherent draft.
+
+\textbf{User annotation.} The user adds context: ``10:40 --- build broke, had to debug. Recovered well.'' The CPI system now shows: a session with a disruption and a successful recovery, not a session of declining focus.
+
+\textbf{Reflection.} The user learns: my stress spikes during unexpected failures, but I recover within 35 minutes. Next time, I might schedule a 5-minute reset after disruptions rather than pushing through immediately. The score alone would have suggested ``try harder''; the trace suggests ``adjust the recovery pattern.''
+
+\subsection{Vignette B: Creative Exploration Session}
+
+\textit{``The system thinks I'm distracted. I'm actually incubating.''}
+
+\textbf{Scenario.} A writer spends an afternoon exploring ideas for a new project with an AI collaborator. Their wearable reports ``low focus'' and ``high variability.'' A productivity-oriented CPI system nudges: ``You seem distracted. Would you like to start a focus session?'' The system has no notion of the user's session goal.
+
+\textbf{With score alone.} The CPI system interprets low sustained focus as a problem. The nudge implies that the user should return to a ``productive'' state---sustained, narrow, deep. The user feels guilty about their exploratory afternoon.
+
+\textbf{With interaction traces added.} The conversation log reveals a different cognitive rhythm: breadth is high and intentional---the user is deliberately connecting ideas across domains (literature, architecture, psychology). Transitions are frequent but rhythmic, not chaotic. And at three specific moments, depth spikes sharply: the user converges on an insight, explores it intensely for 10--15 minutes, then resumes broad exploration. This is not distraction; it is creative incubation with periodic convergence.
+
+\textbf{User annotation.} The user marks the session as ``creative exploration'' and flags the three convergence moments: ``These were the breakthroughs.'' The CPI system learns: for this user, high-breadth sessions with punctuated depth spikes are productive, not distracted.
+
+\textbf{Reflection.} The user adjusts their CPI settings: ``Creative sessions should not trigger focus nudges.'' The system updates the user's individualized baseline: exploration sessions have a different rhythm from deep-work sessions, and both are valid. The score would have prescribed one rhythm; the trace reveals that cognitive health requires multiple rhythms.
+
+\section{Design Principles for Ethical CPI}
+
+Drawing from the vignettes and broader considerations of user agency, we propose four design principles for CPI systems that integrate interaction traces.
+
+\textbf{Principle 1: Uncertainty-first display.} CPI outputs should present confidence levels and alternative explanations by default, never single verdicts. \textit{Rationale:} Cognitive data is inherently ambiguous; false certainty erodes trust and agency. \textit{Example:} Instead of ``Focus: Low,'' display ``Focus estimate: low (confidence: moderate). Possible explanations: fatigue, creative exploration, task transition. What was happening?''
+
+\textbf{Principle 2: User-contestable interpretations.} Any system-generated interpretation should include a visible mechanism for the user to disagree, reframe, or provide an alternative explanation---without penalty or loss of data. \textit{Rationale:} The user's lived experience is epistemically privileged over algorithmic inference. \textit{Example:} A ``This doesn't match my experience'' button that records the user's reinterpretation and adjusts future suggestions. The interface should preserve a trace of both the system's original suggestion and the user's reframe, creating an epistemic record of the interpretive dialogue.
+
+\textbf{Principle 3: Annotation as first-class input.} User-provided context (reasons, events, intentions, emotional state) should be treated as primary data, not optional metadata. \textit{Rationale:} Interaction traces provide behavioral context; user annotations provide intentional context. Together, they create a richer reflective artifact than either alone. \textit{Example:} After a session, prompt ``Anything notable happen during this session?'' and integrate the response into the cognitive narrative.
+
+\textbf{Principle 4: Individualized baselines.} CPI should calibrate against the user's own patterns and user-defined goals, not population norms. For neurodivergent users or simply different cognitive styles, a high topic-switch frequency may be functional, not pathological. \textit{Rationale:} Normative baselines risk pathologizing cognitive diversity. \textit{Example:} Users define their own session types (deep work, creative exploration, administrative) with distinct expected rhythms, and the system evaluates relative to these personal definitions.
+
+\section{Anti-Patterns: What Should Not Be Built}
+
+Alongside design principles, we identify three anti-patterns that CPI systems should actively resist.
+
+\textbf{Anti-pattern 1: Epistemic displacement.} When a CPI system's interpretation consistently overrides the user's self-knowledge---``the data says you were stressed, even if you didn't feel stressed''---the user's capacity for cognitive self-awareness atrophies. CPI should amplify self-knowledge, not replace it. The system should say ``here's what I noticed'' and then ask ``what do you think?''---not the reverse.
+
+\textbf{Anti-pattern 2: Compliance infrastructure.} When CPI data flows to employers, insurers, or platforms as ``cognitive productivity scores,'' the system becomes a surveillance tool. People begin performing for their devices rather than thinking for themselves. CPI data should be user-controlled by default, with sharing as an explicit, revocable, purpose-bound decision.
+
+\textbf{Anti-pattern 3: Normative rhythm enforcement.} When CPI systems treat sustained high focus as the only ``good'' cognitive state and nudge users away from exploration, diffusion, and rest, they suppress the natural variability that supports creativity, recovery, and well-being. CPI fails when it turns cognition into a performance for metrics.
+
+\section{Discussion and Research Agenda}
+
+\textbf{Integration challenges.} Combining sensor-based and interaction-based CPI raises practical questions: how to align timestamps across modalities, how to present potentially conflicting signals (wearable says ``stressed,'' traces say ``productive disruption''), and how to maintain coherent narratives when data sources disagree. We suggest that disagreement between modalities should be surfaced to the user as a reflection prompt, not resolved algorithmically.
+
+\textbf{Neurodiversity and inclusion.} CPI systems must accommodate cognitive diversity as a design requirement, not an edge case. This means supporting user-defined baselines, multiple session types, and goals beyond productivity (well-being, creativity, recovery, social connection). It also means testing CPI designs with neurodivergent users from the outset, not as an afterthought.
+
+\textbf{Evaluation beyond accuracy.} If interaction traces are reflective artifacts rather than measurements, the evaluation criteria shift from classification accuracy to user-centered outcomes: Does the system increase self-reflection? Does it preserve or enhance user agency? Does it reduce self-blame after difficult sessions? Does it support better decision-making about work patterns? These questions require longitudinal, qualitative evaluation methods that foreground the user's own assessment of value. A key evaluative question is whether traces help users produce better self-explanations---not just better behaviors. This can be assessed through longitudinal diary studies, annotation quality over time, and users' perceived agency when disagreeing with the system's interpretations.
+
+\textbf{Toward a research agenda.} We propose three immediate research directions: (1) prototyping multimodal CPI interfaces that combine wearable data with interaction traces and evaluating whether the combination improves reflection quality; (2) studying how users annotate and contest CPI interpretations over time, and whether contestability genuinely preserves agency; and (3) developing design guidelines for CPI systems that serve diverse cognitive styles and resist institutional capture.
+
+\section*{References}
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.2em,itemsep=2pt,topsep=2pt]
+\item Ian Li, Anind Dey, and Jodi Forlizzi. 2010. A Stage-Based Model of Personal Informatics Systems. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems}. ACM, 557--566.
+\item Daniel A. Epstein, An Ping, James Fogarty, and Sean A. Munson. 2015. A Lived Informatics Model of Personal Informatics. In \textit{Proceedings of the 2015 ACM International Joint Conference on Pervasive and Ubiquitous Computing}. ACM, 731--742.
+\item Amon Rapp and Federica Cena. 2016. Personal Informatics for Everyday Life: How Users without Prior Self-Tracking Experience Engage with Personal Data. \textit{International Journal of Human-Computer Studies} 94 (2016), 1--17.
+\item Eun Kyoung Choe, Nicole B. Lee, Bongshin Lee, Wanda Pratt, and Julie A. Kientz. 2014. Understanding Quantified-Selfers' Practices in Collecting and Exploring Personal Data. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems}. ACM, 1143--1152.
+\item Zhuoyang Cai, Xun Qian, Xiaohan Fan, Shwetha Rajaram, and Karthik Ramani. 2024. Cognitive Personal Informatics: Monitoring Cognitive Well-Being through EEG Wearables. arXiv preprint arXiv:2410.06723.
+\item Saleema Amershi, Dan Weld, Mihaela Vorvoreanu, et al. 2019. Guidelines for Human-AI Interaction. In \textit{Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems}. ACM, 1--13.
+\item Matthew Kay, Tara Kola, Jessica R. Hullman, and Sean A. Munson. 2016. When (Ish) Is My Bus? User-Centered Visualizations of Uncertainty in Everyday, Mobile Predictive Systems. In \textit{Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems}. ACM, 5092--5103.
+\item Herbert H. Clark and Susan E. Brennan. 1991. Grounding in Communication. In \textit{Perspectives on Socially Shared Cognition}. APA, 127--149.
+\item Corina Sas and Alina Coman. 2017. Designing Personal Grief Rituals: An Analysis of Symbolic Objects and Actions. \textit{Death Studies} 40, 9 (2017), 558--569.
+\item Kars Alfrink, Ianus Keller, Neelke Doorn, and Gerd Kortuem. 2023. Contestable AI by Design: Towards a Framework. \textit{Minds and Machines} 33 (2023), 613--639.
+\end{enumerate}
+
+\end{document}

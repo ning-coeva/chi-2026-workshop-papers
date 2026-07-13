@@ -1,6 +1,6 @@
 # CHI 2026 Workshop Papers
 
-Public author copies of two single-author CHI 2026 workshop contributions by **Ning Coeva**.
+Public author copies and presentation material by **Ning Coeva**.
 
 ## Papers
 
@@ -11,6 +11,12 @@ Public author copies of two single-author CHI 2026 workshop contributions by **N
 2. **From Scores to Stories: Interaction Traces as Context for Cognitive Personal Informatics**  
    Accepted paper at **The CHI'26 Workshop on the Future of Cognitive Personal Informatics**.  
    [PDF](papers/CHI2026_Future_Cognitive_Personal_Informatics_From_Scores_to_Stories.pdf)
+
+## Presentation Material
+
+- **Evaluation Theater: How Structural Compliance Decouples from Cognitive Judgment in Deployed LLM Agents**  
+  Poster for **AIWILD @ ICML 2026**.  
+  [Poster](posters/Evaluation_Theater_AIWILD2026_Poster.svg)
 
 ## Author
 

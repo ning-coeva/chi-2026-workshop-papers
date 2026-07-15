@@ -1,0 +1,34 @@
+name: Replace CPI paper PDF
+
+on:
+  push:
+    paths:
+      - '.github/workflows/replace-cpi-paper-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild paper PDF
+        run: |
+          cat .build/cpi_ascii.part* | base64 --decode > papers/CHI2026_Future_Cognitive_Personal_Informatics_From_Scores_to_Stories.pdf
+          test "$(head -c 4 papers/CHI2026_Future_Cognitive_Personal_Informatics_From_Scores_to_Stories.pdf)" = "%PDF"
+          rm -f .build/cpi_ascii.part*
+          rmdir .build 2>/dev/null || true
+          rm -f .github/workflows/replace-cpi-paper-pdf.yml
+
+      - name: Commit replacement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Replace Cognitive Personal Informatics paper PDF"
+          git push
